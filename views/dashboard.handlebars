@@ -1,0 +1,35 @@
+{{> header}}
+
+<main>
+    <h1>Your Dashboard</h1>
+    <h2>Your Posts</h2>
+
+    {{#if posts.length}}
+        <ul>
+            {{#each posts}}
+                <li>
+                    <h3>{{this.title}}</h3>
+                    <p>{{this.content}}</p>
+                    <p>Created on: {{formatDate this.createdAt}}</p>
+                    <a href="/edit/{{this.id}}">Edit</a>
+                    <button class="delete-btn" data-id="{{this.id}}" onclick="confirmDelete(event)">Delete</button>
+                </li>
+            {{/each}}
+        </ul>
+    {{else}}
+        <p>No posts found. Create a new post!</p>
+    {{/if}}
+
+    <a href="/new-post" class="btn">Create New Post</a>
+</main>
+
+{{> footer}}
+
+<script>
+    function confirmDelete(event) {
+        const postId = event.target.getAttribute('data-id');
+        if (confirm('Are you sure that you want to delete this post?')) {
+            // ADD DELETE LOGIC HERE
+        }
+    }
+</script>

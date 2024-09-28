@@ -1,0 +1,25 @@
+{{> header}}
+
+<main>
+    <h1>Welcome to Your Tech Blog</h1>
+    <h2>Recent Posts</h2>
+
+    {{#if posts.length}}
+        <ul>
+            {{#each posts}}
+                <li>
+                    <h3><a href="/post/{{this.id}}">{{this.title}}</a></h3>
+                    <p>By: {{this.user.username}} on {{formatDate this.createdAt}}</p>
+                    <p>{{this.contentSnippet}}...</p>
+                </li>
+            {{/each}}
+        </ul>
+    {{else}}
+        <p>No posts available. Check back later!</p>
+    {{/if}}
+
+    <a href="/signup" class="btn">Sign Up to Create Posts</a>
+    <a href="/login" class="btn">Login to Your Account</a>
+</main>
+
+{{> footer}}
